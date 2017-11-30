@@ -106,7 +106,7 @@
     <Compile Include="SalesforceExactTarget.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GolfNow.Mobile.Salesforce.iOS.Bindings\GolfNow.Mobile.Salesforce.Bindings.iOS.csproj">
+    <ProjectReference Include="..\GolfNow.Mobile.Salesforce.Bindings.iOS\GolfNow.Mobile.Salesforce.Bindings.iOS.csproj">
       <Project>{D1856282-646E-46B3-B225-0B67A73CD9A5}</Project>
       <Name>GolfNow.Mobile.Salesforce.Bindings.iOS</Name>
     </ProjectReference>
