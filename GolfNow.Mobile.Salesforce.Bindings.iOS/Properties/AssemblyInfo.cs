@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 
 using Foundation;
+using ObjCRuntime;
 
 // This attribute allows you to mark your assemblies as “safe to link”. 
 // When the attribute is present, the linker—if enabled—will process the assembly 
@@ -20,6 +21,7 @@ using Foundation;
 [assembly: AssemblyCopyright("(c) Juan Roa")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+[assembly: LinkWith(Frameworks = "Foundation UIKit CoreLocation WebKit UserNotifications Security CoreGraphics")]
 
 // The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
 // The form "{Major}.{Minor}.*" will automatically update the build and revision,

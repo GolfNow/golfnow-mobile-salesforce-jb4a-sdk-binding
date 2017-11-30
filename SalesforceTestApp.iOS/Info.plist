@@ -5,7 +5,7 @@
 	<key>CFBundleName</key>
 	<string>SalesforceTestApp.iOS</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.golfnow.teetimes.qa</string>
+	<string>com.golfnow.teetimes.test</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -36,5 +36,12 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+		<string>bluetooth-central</string>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>
