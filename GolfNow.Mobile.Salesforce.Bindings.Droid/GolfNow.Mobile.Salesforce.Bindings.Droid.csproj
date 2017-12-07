@@ -17,7 +17,7 @@
     <PackageIconUrl>https://bitbucket.org/golfnowmobile/golfnow-mobile-nuget-icons/src/a00b1049317a0c30fc1343b328301815aa3722cf/ic_art_track_white_18dp.png</PackageIconUrl>
     <Owners>GolfNow</Owners>
     <PackOnBuild>true</PackOnBuild>
-    <PackageId>GolfNow.Mobile.Salesforce.Bindings.Droid</PackageId>
+    <PackageId>GolfNow.Mobile.Salesforce.JB4A.Droid</PackageId>
     <PackageVersion>1.0.0</PackageVersion>
     <Authors>GolfNow</Authors>
     <Description>Xamarin port of the Salesforce ExactTarget Mobile Push JB4A SDK for Android.</Description>

@@ -49,6 +49,18 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
+    <Reference Include="Golfnow.Mobile.Services.Common">
+      <HintPath>..\packages\Golfnow.Mobile.Services.Common.1.0.8\lib\portable45-net45+win8+wpa81\Golfnow.Mobile.Services.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Golfnow.Mobile.Services.Authentication">
+      <HintPath>..\packages\Golfnow.Mobile.Services.Authentication.1.0.8\lib\portable45-net45+win8+wpa81\Golfnow.Mobile.Services.Authentication.dll</HintPath>
+    </Reference>
+    <Reference Include="Golfnow.Mobile.Services.AuthenticationService">
+      <HintPath>..\packages\Golfnow.Mobile.Services.AuthenticationService.1.0.16\lib\portable45-net45+win8+wpa81\Golfnow.Mobile.Services.AuthenticationService.dll</HintPath>
+    </Reference>
+    <Reference Include="GolfNow.Mobile.Salesforce.Service">
+      <HintPath>..\packages\GolfNow.Mobile.Salesforce.1.0.0\lib\portable45-net45+win8+wpa81\GolfNow.Mobile.Salesforce.Service.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -63,11 +75,7 @@
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\GolfNow.Mobile.Salesforce.Service\GolfNow.Mobile.Salesforce.csproj">
-      <Project>{DF8D460E-72F3-4624-B5F9-8F10707E8341}</Project>
-      <Name>GolfNow.Mobile.Salesforce</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\GolfNow.Mobile.Salesforce.Bindings.Droid\GolfNow.Mobile.Salesforce.Bindings.Droid.csproj">
+    <ProjectReference Include="..\GolfNow.Mobile.Salesforce.Bindings.Droid\GolfNow.Mobile.Salesforce.Bindings.Droid.csproj">
       <Project>{D6A94956-A917-44C4-B814-6D2260B4FDDB}</Project>
       <Name>GolfNow.Mobile.Salesforce.Bindings.Droid</Name>
     </ProjectReference>

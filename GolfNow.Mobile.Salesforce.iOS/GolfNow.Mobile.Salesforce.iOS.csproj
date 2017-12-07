@@ -53,6 +53,21 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="GolfNow.Mobile.Salesforce.iOS.Bindings">
+      <HintPath>..\packages\GolfNow.Mobile.Salesforce.JB4A.iOS.1.0.0\lib\xamarinios10\GolfNow.Mobile.Salesforce.iOS.Bindings.dll</HintPath>
+    </Reference>
+    <Reference Include="Golfnow.Mobile.Services.Common">
+      <HintPath>..\packages\Golfnow.Mobile.Services.Common.1.0.8\lib\portable45-net45+win8+wpa81\Golfnow.Mobile.Services.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Golfnow.Mobile.Services.Authentication">
+      <HintPath>..\packages\Golfnow.Mobile.Services.Authentication.1.0.8\lib\portable45-net45+win8+wpa81\Golfnow.Mobile.Services.Authentication.dll</HintPath>
+    </Reference>
+    <Reference Include="Golfnow.Mobile.Services.AuthenticationService">
+      <HintPath>..\packages\Golfnow.Mobile.Services.AuthenticationService.1.0.16\lib\portable45-net45+win8+wpa81\Golfnow.Mobile.Services.AuthenticationService.dll</HintPath>
+    </Reference>
+    <Reference Include="GolfNow.Mobile.Salesforce.Service">
+      <HintPath>..\packages\GolfNow.Mobile.Salesforce.1.0.0\lib\portable45-net45+win8+wpa81\GolfNow.Mobile.Salesforce.Service.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -60,16 +75,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MarketingCloudSubscriberKeyProvider.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GolfNow.Mobile.Salesforce.Service\GolfNow.Mobile.Salesforce.csproj">
-      <Project>{DF8D460E-72F3-4624-B5F9-8F10707E8341}</Project>
-      <Name>GolfNow.Mobile.Salesforce</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GolfNow.Mobile.Salesforce.Bindings.iOS\GolfNow.Mobile.Salesforce.Bindings.iOS.csproj">
-      <Project>{D1856282-646E-46B3-B225-0B67A73CD9A5}</Project>
-      <Name>GolfNow.Mobile.Salesforce.Bindings.iOS</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -13,11 +13,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GolfNow.Mobile.Salesforce.B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{314387A5-C6B5-4128-AD10-882E01BD8156}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GolfNow.Mobile.Salesforce", "GolfNow.Mobile.Salesforce.Service\GolfNow.Mobile.Salesforce.csproj", "{DF8D460E-72F3-4624-B5F9-8F10707E8341}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GolfNow.Mobile.Salesforce", "GolfNow.Mobile.Salesforce\GolfNow.Mobile.Salesforce.csproj", "{DF8D460E-72F3-4624-B5F9-8F10707E8341}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GolfNow.Mobile.Salesforce.iOS", "GolfNow.Mobile.Salesforce.iOS\GolfNow.Mobile.Salesforce.iOS.csproj", "{AF0B1840-EBB2-4126-BB87-B23F5E2A8642}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GolfNow.Mobile.Salesforce.Droid", "GolfNow.Mobile.Salesforce.iOS\GolfNow.Mobile.Salesforce.Droid\GolfNow.Mobile.Salesforce.Droid.csproj", "{63E3BACA-F723-479E-9F72-E494849C65EF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GolfNow.Mobile.Salesforce.Droid", "GolfNow.Mobile.Salesforce.Droid\GolfNow.Mobile.Salesforce.Droid.csproj", "{63E3BACA-F723-479E-9F72-E494849C65EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
