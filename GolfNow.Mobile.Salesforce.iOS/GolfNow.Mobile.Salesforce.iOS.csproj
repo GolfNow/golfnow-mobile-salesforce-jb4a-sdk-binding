@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NuGet.Build.Packaging.0.1.276\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.276\build\NuGet.Build.Packaging.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AF0B1840-EBB2-4126-BB87-B23F5E2A8642}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>GolfNow.Mobile.Salesforce.iOS</RootNamespace>
+    <AssemblyName>GolfNow.Mobile.Salesforce.iOS</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <PackOnBuild>true</PackOnBuild>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>GolfNow</Authors>
+    <PackageId>GolfNow.Mobile.Salesforce.iOS</PackageId>
+    <PackageLicenseUrl>https://bitbucket.org/golfnowmobile/golfnow-mobile-salesforce-jb4a-sdk</PackageLicenseUrl>
+    <Owners>GolfNow</Owners>
+    <Description>Salesforce Marketing Cloud library for iOS.</Description>
+    <PackageIconUrl>https://bitbucket.org/golfnowmobile/golfnow-mobile-nuget-icons/src/a00b1049317a0c30fc1343b328301815aa3722cf/ic_art_track_white_18dp.png</PackageIconUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <IOSDebuggerPort>22738</IOSDebuggerPort>
+    <DeviceSpecificBuild>false</DeviceSpecificBuild>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MarketingCloudSubscriberKeyProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GolfNow.Mobile.Salesforce.Service\GolfNow.Mobile.Salesforce.csproj">
+      <Project>{DF8D460E-72F3-4624-B5F9-8F10707E8341}</Project>
+      <Name>GolfNow.Mobile.Salesforce</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GolfNow.Mobile.Salesforce.Bindings.iOS\GolfNow.Mobile.Salesforce.Bindings.iOS.csproj">
+      <Project>{D1856282-646E-46B3-B225-0B67A73CD9A5}</Project>
+      <Name>GolfNow.Mobile.Salesforce.Bindings.iOS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Import Project="..\packages\NuGet.Build.Packaging.0.1.276\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.276\build\NuGet.Build.Packaging.targets')" />
+</Project>

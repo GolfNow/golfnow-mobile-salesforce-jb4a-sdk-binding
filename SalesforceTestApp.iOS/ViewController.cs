@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Threading.Tasks;
 using UIKit;
 
 namespace SalesforceTestApp.iOS
@@ -9,6 +9,7 @@ namespace SalesforceTestApp.iOS
         protected ViewController(IntPtr handle) : base(handle)
         {
             // Note: this .ctor should not contain any initialization logic.
+            Task task = Task.Factory.StartNew(() => { });
         }
 
         public override void ViewDidLoad()

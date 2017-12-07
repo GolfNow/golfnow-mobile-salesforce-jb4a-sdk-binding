@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NuGet.Build.Packaging.0.1.276\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.276\build\NuGet.Build.Packaging.props')" />
+  <Import Project="..\..\packages\NuGet.Build.Packaging.0.1.276\build\NuGet.Build.Packaging.props" Condition="Exists('..\..\packages\NuGet.Build.Packaging.0.1.276\build\NuGet.Build.Packaging.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D6A94956-A917-44C4-B814-6D2260B4FDDB}</ProjectGuid>
-    <ProjectTypeGuids>{10368E6C-D01B-4462-8E8B-01FC667A7035};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{63E3BACA-F723-479E-9F72-E494849C65EF}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>GolfNow.Mobile.Salesforce.Bindings.Droid</RootNamespace>
-    <AssemblyName>GolfNow.Mobile.Salesforce.Bindings.Droid</AssemblyName>
-    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <RootNamespace>GolfNow.Mobile.Salesforce.Droid</RootNamespace>
+    <AssemblyName>GolfNow.Mobile.Salesforce.Droid</AssemblyName>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
-    <AndroidClassParser>class-parse</AndroidClassParser>
+    <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
+    <PackageId>GolfNow.Mobile.Salesforce.Droid</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>GolfNow</Authors>
     <PackageIconUrl>https://bitbucket.org/golfnowmobile/golfnow-mobile-nuget-icons/src/a00b1049317a0c30fc1343b328301815aa3722cf/ic_art_track_white_18dp.png</PackageIconUrl>
     <Owners>GolfNow</Owners>
     <PackOnBuild>true</PackOnBuild>
-    <PackageId>GolfNow.Mobile.Salesforce.Bindings.Droid</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
-    <Authors>GolfNow</Authors>
-    <Description>Xamarin port of the Salesforce ExactTarget Mobile Push JB4A SDK for Android.</Description>
+    <Description>Salesforce Marketing Cloud library for Android.</Description>
     <PackageLicenseUrl>https://bitbucket.org/golfnowmobile/golfnow-mobile-salesforce-jb4a-sdk</PackageLicenseUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -32,7 +33,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,7 +43,6 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -52,21 +51,27 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MarketingCloudSubscriberKeyProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Additions\AboutAdditions.txt" />
-    <None Include="Jars\AboutJars.txt" />
+    <None Include="Resources\AboutResources.txt" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <TransformFile Include="Transforms\EnumFields.xml" />
-    <TransformFile Include="Transforms\EnumMethods.xml" />
-    <TransformFile Include="Transforms\Metadata.xml" />
+    <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="Jars\marketingcloudsdk-5.0.6.aar" />
+    <ProjectReference Include="..\..\GolfNow.Mobile.Salesforce.Service\GolfNow.Mobile.Salesforce.csproj">
+      <Project>{DF8D460E-72F3-4624-B5F9-8F10707E8341}</Project>
+      <Name>GolfNow.Mobile.Salesforce</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\GolfNow.Mobile.Salesforce.Bindings.Droid\GolfNow.Mobile.Salesforce.Bindings.Droid.csproj">
+      <Project>{D6A94956-A917-44C4-B814-6D2260B4FDDB}</Project>
+      <Name>GolfNow.Mobile.Salesforce.Bindings.Droid</Name>
+    </ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
-  <Import Project="..\packages\NuGet.Build.Packaging.0.1.276\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.276\build\NuGet.Build.Packaging.targets')" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <Import Project="..\..\packages\NuGet.Build.Packaging.0.1.276\build\NuGet.Build.Packaging.targets" Condition="Exists('..\..\packages\NuGet.Build.Packaging.0.1.276\build\NuGet.Build.Packaging.targets')" />
 </Project>
