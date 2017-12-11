@@ -98,19 +98,10 @@ namespace GolfNow.Mobile.Salesforce.Services
             this.customerProvider = customerProvider ?? throw new ArgumentNullException(nameof(customerProvider));
             this.marketingCloudProvider = marketingCloudProvider ?? throw new ArgumentNullException(nameof(marketingCloudProvider));
 
-        }
-
-        /// <summary>
-        /// Initializes the SubscriberKeyManager. Invoke this method first before use.
-        /// </summary>
-        public Task Initialize()
-        {
             // Register authentication service events
-            authService.AuthenticationSuccess += OnAuthenticationSuccess;
-            authService.AuthenticationError += OnAuthenticationError;
-            authService.LogOutSuccess += OnLogOutSuccess;
-
-            return LoadSubscriberDataIfNeeded();
+            this.authService.AuthenticationSuccess += OnAuthenticationSuccess;
+            this.authService.AuthenticationError += OnAuthenticationError;
+            this.authService.LogOutSuccess += OnLogOutSuccess;
         }
 
         /// <summary>
@@ -136,15 +127,12 @@ namespace GolfNow.Mobile.Salesforce.Services
         /// </summary>
         public void UpdateSubscriberKeyIfNeeded(bool forceUpdate = false)
         {
-            if (SubscriberData == null)
-            {
-                throw new InvalidOperationException("SubscriberMetadata is null. Did you forget to invoke Initialize()?");
-            }
-
             Task.Run(async () =>
             {
                 try
                 {
+                    await LoadSubscriberDataIfNeeded();
+
                     // If forced to do an update, reset the subscriber metadata
                     if (forceUpdate)
                     {
@@ -170,13 +158,22 @@ namespace GolfNow.Mobile.Salesforce.Services
                         SaveSubscriberData();
                     }
                 }
-#pragma warning disable CS0168 // Variable is declared but never used
                 catch (Exception e)
-#pragma warning restore CS0168 // Variable is declared but never used
                 {
-                    SubscriberData.Dirty = true;
+                    HandleSubscriberKeyUpdateError(e);
                 }
             });
+        }
+
+        /// <summary>
+        /// Invoked when a subscriber key update operation resulted in an error.
+        /// 
+        /// Default implementation marks the current SubscriberData as "dirty" so that
+        /// an attempt to persist it can be re-tried at the next opportunity.
+        /// </summary>
+        protected virtual void HandleSubscriberKeyUpdateError(Exception error)
+        {
+            SubscriberData.Dirty = true;
         }
 
         /// <summary>
