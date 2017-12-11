@@ -107,6 +107,7 @@ namespace GolfNow.Mobile.Salesforce.Services
         {
             // Register authentication service events
             authService.AuthenticationSuccess += OnAuthenticationSuccess;
+            authService.AuthenticationError += OnAuthenticationError;
             authService.LogOutSuccess += OnLogOutSuccess;
 
             return LoadSubscriberDataIfNeeded();
@@ -118,6 +119,7 @@ namespace GolfNow.Mobile.Salesforce.Services
         public void Dispose()
         {
             authService.AuthenticationSuccess -= OnAuthenticationSuccess;
+            authService.AuthenticationError -= OnAuthenticationError;
             authService.LogOutSuccess -= OnLogOutSuccess;
         }
 
@@ -255,6 +257,14 @@ namespace GolfNow.Mobile.Salesforce.Services
         /// Invoked when the app authentication has changed.
         /// </summary>
         void OnAuthenticationSuccess(object sender, AuthenticationSuccessEventArgs e)
+        {
+            UpdateSubscriberKey();
+        }
+
+        /// <summary>
+        /// Invoked when the app authentication has changed.
+        /// </summary>
+        void OnAuthenticationError(object sender, AuthenticationErrorEventArgs e)
         {
             UpdateSubscriberKey();
         }
