@@ -140,7 +140,7 @@ namespace GolfNow.Mobile.Salesforce.Services
                     }
 
                     // Check if updating the subscriber key for an authenticated user is necessary
-                    if (string.IsNullOrEmpty(SubscriberData.CustomerSubscriberKey) && await ShouldQueryForCustomerSubscriberKey())
+                    if (await ShouldQueryForCustomerSubscriberKey())
                     {
                         // Update the metadata and mark it as dirty so that is is persisted
                         SubscriberData.CustomerSubscriberKey = await GetCustomerSubscriberKey();
@@ -194,7 +194,7 @@ namespace GolfNow.Mobile.Salesforce.Services
         /// </summary>
         async Task<bool> ShouldQueryForCustomerSubscriberKey()
         {
-            if (await authService.IsAuthenticated())
+            if (await authService.IsAuthenticated() && string.IsNullOrEmpty(SubscriberData.CustomerSubscriberKey))
             {
                 // Check if we should fetch for a GolfNow subscriber key
                 if (DateTime.Now >= SubscriberData?.LastFetchDate.AddMinutes(MinimumCustomerSubscriberKeyFetchInterval))
