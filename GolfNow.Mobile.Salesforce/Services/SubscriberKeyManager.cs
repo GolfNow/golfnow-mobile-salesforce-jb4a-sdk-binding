@@ -28,6 +28,11 @@ namespace GolfNow.Mobile.Salesforce.Services
         public string CustomerSubscriberKey { get; set; }
 
         /// <summary>
+        /// The email address for a known customer.
+        /// </summary>
+        public string CustomerEmailAddress { get; set; }
+
+        /// <summary>
         /// The subscriber key for a guest customer.
         /// </summary>
         public string GuestSubscriberKey { get; set; }
@@ -37,11 +42,6 @@ namespace GolfNow.Mobile.Salesforce.Services
         /// </summary>
         public DateTime LastFetchDate { get; set; }
 
-        /// <summary>
-        /// Whether this data is "dirty" i.e. has non-persisted changes.
-        /// </summary>
-        public bool Dirty { get; set; }
-
 
         /// <summary>
         /// Initializes an instance.
@@ -49,9 +49,9 @@ namespace GolfNow.Mobile.Salesforce.Services
         public SubscriberData()
         {
             CustomerSubscriberKey = null;
+            CustomerEmailAddress = null;
             GuestSubscriberKey = GenerateSubscriberKey();
             LastFetchDate = DateTime.MinValue;
-            Dirty = true;
         }
 
         /// <summary>
@@ -136,27 +136,23 @@ namespace GolfNow.Mobile.Salesforce.Services
                     // If forced to do an update, reset the subscriber metadata
                     if (forceUpdate)
                     {
-                        ResetSubscriberData();
+                        await ResetSubscriberData();
                     }
 
                     // Check if updating the subscriber key for an authenticated user is necessary
                     if (await ShouldQueryForCustomerSubscriberKey())
                     {
                         // Update the metadata and mark it as dirty so that is is persisted
+                        SubscriberData.CustomerEmailAddress = await GetCustomerEmailAddress();
                         SubscriberData.CustomerSubscriberKey = await GetCustomerSubscriberKey();
                         SubscriberData.LastFetchDate = DateTime.Now;
-                        SubscriberData.Dirty = true;
                     }
 
-                    // Only update the subscriber metadata if needed
-                    if (SubscriberData.Dirty)
-                    {
-                        // Set the subscriber key in the Marketing Cloud SDK
-                        await marketingCloudProvider.SetSubscriberKey(SubscriberData.SubscriberKey);
+                    // Set the subscriber key in the Marketing Cloud SDK
+                    await marketingCloudProvider.SetSubscriberKey(SubscriberData.SubscriberKey);
 
-                        // Save the updated subscriber metadata to persistent store
-                        SaveSubscriberData();
-                    }
+                    // Save the updated subscriber metadata to persistent store
+                    await SaveSubscriberData();
                 }
                 catch (Exception e)
                 {
@@ -167,13 +163,10 @@ namespace GolfNow.Mobile.Salesforce.Services
 
         /// <summary>
         /// Invoked when a subscriber key update operation resulted in an error.
-        /// 
-        /// Default implementation marks the current SubscriberData as "dirty" so that
-        /// an attempt to persist it can be re-tried at the next opportunity.
         /// </summary>
         protected virtual void HandleSubscriberKeyUpdateError(Exception error)
         {
-            SubscriberData.Dirty = true;
+            
         }
 
         /// <summary>
@@ -194,10 +187,19 @@ namespace GolfNow.Mobile.Salesforce.Services
         /// </summary>
         async Task<bool> ShouldQueryForCustomerSubscriberKey()
         {
-            if (await authService.IsAuthenticated() && string.IsNullOrEmpty(SubscriberData.CustomerSubscriberKey))
+            if (await authService.IsAuthenticated())
             {
-                // Check if we should fetch for a GolfNow subscriber key
-                if (DateTime.Now >= SubscriberData?.LastFetchDate.AddMinutes(MinimumCustomerSubscriberKeyFetchInterval))
+                // Check if there's a discrepancy with the stored customer email and the current customer email
+                if(!string.Equals(SubscriberData.CustomerEmailAddress, await GetCustomerEmailAddress()))
+                {
+                    return true;
+                }
+
+                // Enforce a minimum time interval before a query to fetch the customer subscriber should occur
+                bool isPastWaitingPeriod = (DateTime.Now >= SubscriberData?.LastFetchDate.AddMinutes(MinimumCustomerSubscriberKeyFetchInterval));
+                    
+                // Check if we should fetch for a customer subscriber key
+                if (string.IsNullOrEmpty(SubscriberData.CustomerSubscriberKey) && isPastWaitingPeriod)
                 {
                     return true;
                 }
@@ -207,17 +209,27 @@ namespace GolfNow.Mobile.Salesforce.Services
         }
 
         /// <summary>
+        /// Gets the customer's email address.
+        /// </summary>
+        async Task<string> GetCustomerEmailAddress()
+        {
+            var user = await authService.GetAuthenticatedUserAsync();
+
+            return user?.EmailAddress ?? null;
+        }
+
+        /// <summary>
         /// Gets the customer subscriber key by querying the GolfNow provider.
         /// </summary>
         async Task<string> GetCustomerSubscriberKey()
         {
             string subscriberKey = null;
 
-            var user = await authService.GetAuthenticatedUserAsync();
+            var emailAddress = SubscriberData.CustomerEmailAddress;
 
-            if (!string.IsNullOrEmpty(user?.EmailAddress))
+            if (!string.IsNullOrEmpty(emailAddress))
             {
-                subscriberKey = await customerProvider.GetSubscriberKey(user.EmailAddress);
+                subscriberKey = await customerProvider.GetSubscriberKey(emailAddress);
             }
 
             return subscriberKey;
@@ -226,22 +238,20 @@ namespace GolfNow.Mobile.Salesforce.Services
         /// <summary>
         /// Saves the subscriber metadata to persistent storage.
         /// </summary>
-        void SaveSubscriberData()
+        async Task SaveSubscriberData()
         {
             if (SubscriberData != null)
             {
-                SubscriberData.Dirty = false;
-
-                cacheProvider.InsertObjectAsync(SUBSCRIBER_DATA, SubscriberData);
+                await cacheProvider.InsertObjectAsync(SUBSCRIBER_DATA, SubscriberData);
             }
         }
 
         /// <summary>
         /// Resets the subscriber metadata by deleting the customer subscriber key.
         /// </summary>
-        void ResetSubscriberData()
+        async Task ResetSubscriberData()
         {
-            cacheProvider.InvalidateObjectAsync<SubscriberData>(SUBSCRIBER_DATA);
+            await cacheProvider.InvalidateObjectAsync<SubscriberData>(SUBSCRIBER_DATA);
 
             // Create a new instance of subscriber metadata, but retain the same guest subscriber key
             SubscriberData = new SubscriberData()
