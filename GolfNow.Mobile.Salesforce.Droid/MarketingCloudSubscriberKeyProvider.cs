@@ -16,31 +16,31 @@ namespace GolfNow.Mobile.Salesforce.Droid.Providers
                 return Task.FromResult<string>(null);
             }
 
-            //throw Task.FromResult(cloudSdk.RegistrationManager.ContactKey);
+            return Task.FromResult(cloudSdk.RegistrationManager.ContactKey);
 
-            throw new NotImplementedException();
+
         }
 
         public Task SetSubscriberKey(string subscriberKey)
         {
             var cloudSdk = MarketingCloudSdk.Instance;
 
-            if(cloudSdk == null || !cloudSdk.InitializationStatus.IsUsable)
+            if (cloudSdk == null || !cloudSdk.InitializationStatus.IsUsable)
             {
                 return Task.FromException(new TaskCanceledException("MarketingCloudSdk is not usable."));
             }
 
-            //var registrationManager = cloudSdk.RegistrationManager;
+            var registrationManager = cloudSdk.RegistrationManager;
 
-            //return Task.Factory.StartNew(() =>
-            //{
-            //    registrationManager
-            //    .Edit()
-            //    .SetContactKey(subscriberKey)
-            //    .Commit();
-            //});
+            return Task.Factory.StartNew(() =>
+            {
+                registrationManager
+                .Edit()
+                .SetContactKey(subscriberKey)
+                .Commit();
+            });
 
-            throw new NotImplementedException();
+
         }
     }
 }
