@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NuGet.Build.Packaging.0.1.276\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.276\build\NuGet.Build.Packaging.props')" />
+  <Import Project="..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -12,7 +12,7 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
     <PackageId>GolfNow.Mobile.Salesforce</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>1.0.1</PackageVersion>
     <Authors>GolfNow</Authors>
     <Description>Salesforce Marketing Cloud multi-platform library.</Description>
     <PackOnBuild>true</PackOnBuild>
@@ -50,15 +50,21 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Golfnow.Mobile.Services.Common">
-      <HintPath>..\packages\Golfnow.Mobile.Services.Common.1.0.8\lib\portable45-net45+win8+wpa81\Golfnow.Mobile.Services.Common.dll</HintPath>
+      <HintPath>..\packages\Golfnow.Mobile.Services.Common.1.0.15\lib\portable45-net45+win8+wpa81\Golfnow.Mobile.Services.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Golfnow.Mobile.Models.DataContracts">
+      <HintPath>..\packages\Golfnow.Mobile.Models.DataContracts.1.0.6\lib\portable45-net45+win8+wpa81\Golfnow.Mobile.Models.DataContracts.dll</HintPath>
     </Reference>
     <Reference Include="Golfnow.Mobile.Services.Authentication">
-      <HintPath>..\packages\Golfnow.Mobile.Services.Authentication.1.0.8\lib\portable45-net45+win8+wpa81\Golfnow.Mobile.Services.Authentication.dll</HintPath>
+      <HintPath>..\packages\Golfnow.Mobile.Services.Authentication.1.0.27\lib\portable45-net45+win8+wpa81\Golfnow.Mobile.Services.Authentication.dll</HintPath>
     </Reference>
     <Reference Include="Golfnow.Mobile.Services.AuthenticationService">
-      <HintPath>..\packages\Golfnow.Mobile.Services.AuthenticationService.1.0.16\lib\portable45-net45+win8+wpa81\Golfnow.Mobile.Services.AuthenticationService.dll</HintPath>
+      <HintPath>..\packages\Golfnow.Mobile.Services.AuthenticationService.1.0.28\lib\portable45-net45+win8+wpa81\Golfnow.Mobile.Services.AuthenticationService.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <Import Project="..\packages\NuGet.Build.Packaging.0.1.276\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.276\build\NuGet.Build.Packaging.targets')" />
+  <Import Project="..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets')" />
 </Project>

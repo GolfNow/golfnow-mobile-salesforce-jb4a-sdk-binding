@@ -13,6 +13,6 @@ namespace GolfNow.Mobile.Salesforce.Providers
         /// <summary>
         /// Sets the subscriber key to the Marketing Cloud SDK.
         /// </summary>
-        Task SetSubscriberKey(string subscriberKey);
+        Task<bool> SetSubscriberKey(string subscriberKey);
     }
 }
