@@ -9,29 +9,34 @@ namespace GolfNow.Mobile.Salesforce.iOS.Providers
     {
         public Task<string> GetSubscriberKey()
         {
-            return Task.FromResult(ETPush.PushManager().SubscriberKey);
+            string subscriberKey = null;
+
+            try
+            {
+                subscriberKey = ETPush.PushManager().SubscriberKey;
+            }
+            catch (Exception e)
+            {
+                OnException(e);
+            }
+
+            return Task.FromResult(subscriberKey);
         }
 
         public async Task<bool> SetSubscriberKey(string subscriberKey)
         {
-            return await SetSubKey(subscriberKey);
-        }
-
-        public async Task<bool> SetSubKey(string subscriberKey)
-        {
             try
             {
                 return ETPush.PushManager().SetSubscriberKey(subscriberKey);
-
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                //Add Logging
+                OnException(e);
             }
 
             return false;
         }
 
-
+        protected virtual void OnException(Exception e) { }
     }
 }

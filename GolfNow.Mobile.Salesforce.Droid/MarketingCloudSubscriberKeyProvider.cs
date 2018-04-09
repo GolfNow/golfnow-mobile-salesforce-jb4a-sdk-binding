@@ -17,8 +17,6 @@ namespace GolfNow.Mobile.Salesforce.Droid.Providers
             }
 
             return Task.FromResult(cloudSdk.RegistrationManager.ContactKey);
-
-
         }
 
         public Task SetSubscriberKey(string subscriberKey)
@@ -39,8 +37,8 @@ namespace GolfNow.Mobile.Salesforce.Droid.Providers
                 .SetContactKey(subscriberKey)
                 .Commit();
             });
-
-
         }
+
+        protected virtual void OnException(Exception e) { }
     }
 }
