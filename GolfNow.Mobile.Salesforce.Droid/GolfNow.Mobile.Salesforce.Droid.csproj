@@ -11,14 +11,14 @@
     <OutputType>Library</OutputType>
     <RootNamespace>GolfNow.Mobile.Salesforce.Droid</RootNamespace>
     <AssemblyName>GolfNow.Mobile.Salesforce.Droid</AssemblyName>
-    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
     <PackageId>GolfNow.Mobile.Salesforce.Droid</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>1.0.1</PackageVersion>
     <Authors>GolfNow</Authors>
     <PackageIconUrl>https://bitbucket.org/golfnowmobile/golfnow-mobile-nuget-icons/src/a00b1049317a0c30fc1343b328301815aa3722cf/ic_art_track_white_18dp.png</PackageIconUrl>
     <Owners>GolfNow</Owners>
@@ -51,18 +51,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="Golfnow.Mobile.Services.Common">
-      <HintPath>..\packages\Golfnow.Mobile.Services.Common.1.0.8\lib\portable45-net45+win8+wpa81\Golfnow.Mobile.Services.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Golfnow.Mobile.Services.Authentication">
-      <HintPath>..\packages\Golfnow.Mobile.Services.Authentication.1.0.8\lib\portable45-net45+win8+wpa81\Golfnow.Mobile.Services.Authentication.dll</HintPath>
-    </Reference>
-    <Reference Include="Golfnow.Mobile.Services.AuthenticationService">
-      <HintPath>..\packages\Golfnow.Mobile.Services.AuthenticationService.1.0.16\lib\portable45-net45+win8+wpa81\Golfnow.Mobile.Services.AuthenticationService.dll</HintPath>
-    </Reference>
-    <Reference Include="GolfNow.Mobile.Salesforce.Service">
-      <HintPath>..\packages\GolfNow.Mobile.Salesforce.1.0.0\lib\portable45-net45+win8+wpa81\GolfNow.Mobile.Salesforce.Service.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Android.Support.Annotations">
       <HintPath>..\packages\Xamarin.Android.Support.Annotations.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Annotations.dll</HintPath>
     </Reference>
@@ -96,9 +84,6 @@
     <Reference Include="Xamarin.GooglePlayServices.Basement">
       <HintPath>..\packages\Xamarin.GooglePlayServices.Basement.60.1142.0\lib\MonoAndroid80\Xamarin.GooglePlayServices.Basement.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.GooglePlayServices.Tasks">
-      <HintPath>..\packages\Xamarin.GooglePlayServices.Tasks.60.1142.0\lib\MonoAndroid80\Xamarin.GooglePlayServices.Tasks.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.GooglePlayServices.Base">
       <HintPath>..\packages\Xamarin.GooglePlayServices.Base.60.1142.0\lib\MonoAndroid80\Xamarin.GooglePlayServices.Base.dll</HintPath>
     </Reference>
@@ -118,7 +103,27 @@
       <HintPath>..\packages\marketingcloudsdkAndroid.1.0.7\lib\monoandroid80\marketingcloudsdk.dll</HintPath>
     </Reference>
     <Reference Include="Java.Interop" />
-    <Reference Include="System.Runtime" />
+    <Reference Include="Xamarin.GooglePlayServices.Tasks">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Tasks.60.1142.0\lib\MonoAndroid80\Xamarin.GooglePlayServices.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Golfnow.Mobile.Services.Common">
+      <HintPath>..\packages\Golfnow.Mobile.Services.Common.1.0.15\lib\portable45-net45+win8+wpa81\Golfnow.Mobile.Services.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Golfnow.Mobile.Models.DataContracts">
+      <HintPath>..\packages\Golfnow.Mobile.Models.DataContracts.1.0.6\lib\portable45-net45+win8+wpa81\Golfnow.Mobile.Models.DataContracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Golfnow.Mobile.Services.Authentication">
+      <HintPath>..\packages\Golfnow.Mobile.Services.Authentication.1.0.27\lib\portable45-net45+win8+wpa81\Golfnow.Mobile.Services.Authentication.dll</HintPath>
+    </Reference>
+    <Reference Include="Golfnow.Mobile.Services.AuthenticationService">
+      <HintPath>..\packages\Golfnow.Mobile.Services.AuthenticationService.1.0.28\lib\portable45-net45+win8+wpa81\Golfnow.Mobile.Services.AuthenticationService.dll</HintPath>
+    </Reference>
+    <Reference Include="GolfNow.Mobile.Salesforce.Service">
+      <HintPath>..\packages\GolfNow.Mobile.Salesforce.1.0.1\lib\portable45-net45+win8+wpa81\GolfNow.Mobile.Salesforce.Service.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />

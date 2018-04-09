@@ -9,34 +9,49 @@ namespace GolfNow.Mobile.Salesforce.Droid.Providers
     {
         public Task<string> GetSubscriberKey()
         {
-            var cloudSdk = MarketingCloudSdk.Instance;
+            string subscriberKey = null;
 
-            if (cloudSdk == null || !cloudSdk.InitializationStatus.IsUsable)
+            try
             {
-                return Task.FromResult<string>(null);
+                var cloudSdk = MarketingCloudSdk.Instance;
+
+                if (cloudSdk != null || cloudSdk.InitializationStatus.IsUsable)
+                {
+                    subscriberKey = cloudSdk.RegistrationManager.ContactKey;
+                }
+            }
+            catch (Exception e)
+            {
+                OnException(e);
             }
 
-            return Task.FromResult(cloudSdk.RegistrationManager.ContactKey);
+            return Task.FromResult(subscriberKey);
         }
 
-        public Task SetSubscriberKey(string subscriberKey)
+        public Task<bool> SetSubscriberKey(string subscriberKey)
         {
-            var cloudSdk = MarketingCloudSdk.Instance;
+            bool result = false;
 
-            if (cloudSdk == null || !cloudSdk.InitializationStatus.IsUsable)
+            try
             {
-                return Task.FromException(new TaskCanceledException("MarketingCloudSdk is not usable."));
+                var cloudSdk = MarketingCloudSdk.Instance;
+
+                if (cloudSdk != null || cloudSdk.InitializationStatus.IsUsable)
+                {
+                    var registrationManager = cloudSdk.RegistrationManager;
+
+                    result = registrationManager
+                        .Edit()
+                        .SetContactKey(subscriberKey)
+                        .Commit();
+                }
+            }
+            catch (Exception e)
+            {
+                OnException(e);
             }
 
-            var registrationManager = cloudSdk.RegistrationManager;
-
-            return Task.Factory.StartNew(() =>
-            {
-                registrationManager
-                .Edit()
-                .SetContactKey(subscriberKey)
-                .Commit();
-            });
+            return Task.FromResult(result);
         }
 
         protected virtual void OnException(Exception e) { }

@@ -11,7 +11,7 @@
     <AssemblyName>GolfNow.Mobile.Salesforce.iOS</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <PackOnBuild>true</PackOnBuild>
-    <PackageVersion>1.0.2</PackageVersion>
+    <PackageVersion>1.0.3</PackageVersion>
     <Authors>GolfNow</Authors>
     <PackageId>GolfNow.Mobile.Salesforce.iOS</PackageId>
     <PackageLicenseUrl>https://bitbucket.org/golfnowmobile/golfnow-mobile-salesforce-jb4a-sdk</PackageLicenseUrl>
