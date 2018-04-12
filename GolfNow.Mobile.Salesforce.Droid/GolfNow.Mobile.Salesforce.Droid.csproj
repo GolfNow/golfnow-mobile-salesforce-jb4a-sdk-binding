@@ -18,7 +18,7 @@
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
     <PackageId>GolfNow.Mobile.Salesforce.Droid</PackageId>
-    <PackageVersion>1.0.1</PackageVersion>
+    <PackageVersion>1.0.4</PackageVersion>
     <Authors>GolfNow</Authors>
     <PackageIconUrl>https://bitbucket.org/golfnowmobile/golfnow-mobile-nuget-icons/src/a00b1049317a0c30fc1343b328301815aa3722cf/ic_art_track_white_18dp.png</PackageIconUrl>
     <Owners>GolfNow</Owners>
@@ -122,7 +122,7 @@
       <HintPath>..\packages\Golfnow.Mobile.Services.AuthenticationService.1.0.28\lib\portable45-net45+win8+wpa81\Golfnow.Mobile.Services.AuthenticationService.dll</HintPath>
     </Reference>
     <Reference Include="GolfNow.Mobile.Salesforce.Service">
-      <HintPath>..\packages\GolfNow.Mobile.Salesforce.1.0.1\lib\portable45-net45+win8+wpa81\GolfNow.Mobile.Salesforce.Service.dll</HintPath>
+      <HintPath>..\packages\GolfNow.Mobile.Salesforce.1.0.4\lib\portable45-net45+win8+wpa81\GolfNow.Mobile.Salesforce.Service.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
