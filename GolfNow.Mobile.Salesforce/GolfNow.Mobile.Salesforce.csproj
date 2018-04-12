@@ -12,7 +12,7 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
     <PackageId>GolfNow.Mobile.Salesforce</PackageId>
-    <PackageVersion>1.0.1</PackageVersion>
+    <PackageVersion>1.0.2</PackageVersion>
     <Authors>GolfNow</Authors>
     <Description>Salesforce Marketing Cloud multi-platform library.</Description>
     <PackOnBuild>true</PackOnBuild>

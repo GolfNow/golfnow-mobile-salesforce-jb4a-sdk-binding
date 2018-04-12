@@ -66,6 +66,12 @@ namespace GolfNow.Mobile.Salesforce.Services
 
     public class SubscriberKeyManager : IDisposable
     {
+        public class InvalidSubscriberKeyException : Exception
+        {
+            public InvalidSubscriberKeyException() { }
+            public InvalidSubscriberKeyException(string message) : base(message) { }
+        }
+
         // Cache keys
         public static string SUBSCRIBER_DATA = "SubscriberKeyManager.SubscriberData";
 
@@ -148,6 +154,14 @@ namespace GolfNow.Mobile.Salesforce.Services
                         SubscriberData.LastFetchDate = DateTime.Now;
                     }
 
+                    // Throw error for invalid subscriber key
+                    if (string.IsNullOrEmpty(SubscriberData.SubscriberKey))
+                    {
+                        throw new InvalidSubscriberKeyException(
+                            "SubscriberData: `SubscriberKey` cannot be null or blank. Ensure that `GuestSubscriberKey` is set in case `CustomerSubscriberKey` is null."
+                        );
+                    }
+
                     // Set the subscriber key in the Marketing Cloud SDK
                     await marketingCloudProvider.SetSubscriberKey(SubscriberData.SubscriberKey);
 
@@ -164,10 +178,7 @@ namespace GolfNow.Mobile.Salesforce.Services
         /// <summary>
         /// Invoked when a subscriber key update operation resulted in an error.
         /// </summary>
-        protected virtual void HandleSubscriberKeyUpdateError(Exception error)
-        {
-            
-        }
+        protected virtual void HandleSubscriberKeyUpdateError(Exception error) { }
 
         /// <summary>
         /// Loads and sets the current subscriber metadata from persistent storage.
@@ -213,7 +224,7 @@ namespace GolfNow.Mobile.Salesforce.Services
         /// </summary>
         async Task<string> GetCustomerEmailAddress()
         {
-            var user = await authService.GetAuthenticatedUserAsync();
+            var user = await authService.GetUserProfileAsync();
 
             return user?.EmailAddress ?? null;
         }
